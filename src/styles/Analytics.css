@@ -1,0 +1,582 @@
+.analytics {
+  padding-bottom: 30px;
+}
+
+.analytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+/* Controls Section */
+.controls-section {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.date-filter {
+  display: flex;
+  align-items: center;
+}
+
+.date-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.date-input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-input-group label {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.date-input-wrapper {
+  position: relative;
+}
+
+.date-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Analytics Filters */
+.analytics-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  background-color: #f5f7f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  flex: 1;
+}
+
+.filter-group label {
+  font-size: 0.85rem;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* Tab Navigation */
+.analytics-tabs {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 25px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.tab-button {
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #777;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.tab-button:hover {
+  color: var(--primary-color);
+}
+
+.tab-button.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+.analytics-content {
+  margin-top: 20px;
+}
+
+/* Summary Cards */
+.analytics-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.summary-card {
+  flex: 1;
+  min-width: 200px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.summary-card h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #777;
+  font-weight: 500;
+}
+
+.summary-value {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 10px 0 0;
+  color: var(--primary-color);
+}
+
+.summary-percentage {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 5px 0 0;
+}
+
+.summary-card.total .summary-value {
+  color: var(--secondary-color);
+}
+
+.summary-card.approved .summary-value {
+  color: var(--success-color);
+}
+
+.summary-card.rejected .summary-value {
+  color: var(--danger-color);
+}
+
+.summary-card.pending .summary-value {
+  color: var(--warning-color);
+}
+
+/* Charts */
+.analytics-charts {
+  margin-bottom: 30px;
+}
+
+.charts-row {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.chart-card {
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.chart-card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+.chart-container {
+  height: 300px;
+  position: relative;
+}
+
+.daily-chart {
+  height: 350px;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+  font-weight: 600;
+  border-left: 4px solid var(--primary-color);
+  padding-left: 10px;
+}
+
+/* Insights */
+.insights-card {
+  margin-top: 20px;
+}
+
+.insights-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.insight-item {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: flex-start;
+}
+
+.insight-indicator {
+  width: 8px;
+  height: 8px;
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  margin-top: 8px;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.insight-item p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Funnel Analysis */
+.funnel-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  background-color: #f5f7f9;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.funnel-stat {
+  text-align: center;
+}
+
+.funnel-stat h4 {
+  font-size: 0.9rem;
+  margin: 0 0 8px 0;
+  color: #555;
+}
+
+.funnel-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--secondary-color);
+}
+
+/* Abandonment Analysis */
+.abandonment-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.abandonment-stats {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  min-width: 250px;
+}
+
+.abandonment-stat {
+  flex: 1;
+  padding: 15px;
+  background-color: #f5f7f9;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.abandonment-stat h4 {
+  font-size: 0.9rem;
+  margin: 0 0 10px 0;
+  color: #555;
+}
+
+.abandonment-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--secondary-color);
+}
+
+.abandonment-reasons {
+  flex: 2;
+  min-width: 300px;
+}
+
+.abandonment-reasons h4 {
+  font-size: 0.9rem;
+  margin: 0 0 15px 0;
+  color: #555;
+}
+
+.reasons-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reason-item {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.reason-label {
+  width: 150px;
+  font-size: 0.9rem;
+}
+
+.reason-bar-container {
+  flex: 1;
+  height: 20px;
+  background-color: #eaeaea;
+  border-radius: 10px;
+  position: relative;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.reason-bar {
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+}
+
+.reason-value {
+  margin-left: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Geographic Map */
+.map-card {
+  margin-bottom: 20px;
+}
+
+.map-placeholder {
+  height: 400px;
+  background-color: #f5f7f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 20px;
+}
+
+.map-placeholder svg {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: var(--secondary-color);
+}
+
+/* Demographics */
+.key-demographic-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.demographic-stat {
+  flex: 1;
+  min-width: 200px;
+  padding: 15px;
+  background-color: #f5f7f9;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.demographic-stat h4 {
+  font-size: 0.9rem;
+  margin: 0 0 10px 0;
+  color: #555;
+}
+
+.demographic-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--primary-color);
+}
+
+/* Fraud Alerts */
+.alert-card {
+  margin-top: 20px;
+}
+
+.alert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.fraud-alert {
+  background-color: #fff8f8;
+  border-left: 4px solid #e74c3c;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.alert-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.alert-title {
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.alert-title svg {
+  color: #e74c3c;
+}
+
+.alert-severity {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 10px;
+}
+
+.alert-severity[data-severity="High"] {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+
+.alert-severity[data-severity="Medium"] {
+  background-color: rgba(243, 156, 18, 0.1);
+  color: #f39c12;
+}
+
+.alert-severity[data-severity="Low"] {
+  background-color: rgba(41, 128, 185, 0.1);
+  color: #2980b9;
+}
+
+.alert-description {
+  margin: 0 0 15px 0;
+  line-height: 1.5;
+}
+
+.alert-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.no-alerts {
+  padding: 20px;
+  text-align: center;
+  color: #777;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .analytics-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .controls-section {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .date-filter {
+    width: 100%;
+  }
+  
+  .date-inputs {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .date-input-group {
+    flex: 1;
+  }
+  
+  .action-buttons {
+    width: 100%;
+  }
+  
+  .action-buttons button {
+    flex: 1;
+  }
+  
+  .analytics-tabs {
+    overflow-x: auto;
+  }
+  
+  .funnel-stats,
+  .abandonment-stats,
+  .key-demographic-stats {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .abandonment-info {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .charts-row {
+    flex-direction: column;
+  }
+  
+  .chart-container, .daily-chart {
+    height: 300px;
+  }
+  
+  .summary-card {
+    min-width: 100%;
+  }
+  
+  .date-inputs {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .analytics-filters {
+    flex-direction: column;
+  }
+  
+  .tab-button {
+    padding: 12px 15px;
+    font-size: 13px;
+  }
+  
+  .reason-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .reason-label {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  
+  .reason-bar-container {
+    margin-left: 0;
+    width: 100%;
+  }
+}
