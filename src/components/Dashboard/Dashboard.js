@@ -117,244 +117,367 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <h1 className="page-title">Dashboard</h1>
+      <header className="dashboard-header">
+        <h1 className="page-title">Dashboard Overview</h1>
+        <div className="dashboard-actions">
+          <div className="date-display">
+            <span className="day">{new Date().toLocaleDateString('en-US', { weekday: 'long' })}</span>
+            <span className="date">{new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+          </div>
+        </div>
+      </header>
       
-      {/* Stats Cards */}
-      <div className="stats-cards">
-        <div className="stat-card">
-          <div className="stat-icon total">
-            <FaIdCard />
+      {/* Key Metrics Cards */}
+      <div className="stats-grid">
+        <div className="stat-card elevation-1 total-card">
+          <div className="stat-icon-wrapper total">
+            <FaIdCard className="stat-icon-inner" />
           </div>
           <div className="stat-details">
-            <h3>Total Requests</h3>
-            <p className="stat-value">{stats.totalRequests}</p>
+            <p className="stat-label">Total Requests</p>
+            <h3 className="stat-value">{stats.totalRequests.toLocaleString()}</h3>
+            <div className="stat-trend positive">
+              <span>↑ 12% from previous period</span>
+            </div>
           </div>
         </div>
         
-        <div className="stat-card">
-          <div className="stat-icon approved">
-            <FaUserCheck />
+        <div className="stat-card elevation-1 approved-card">
+          <div className="stat-icon-wrapper approved">
+            <FaUserCheck className="stat-icon-inner" />
           </div>
           <div className="stat-details">
-            <h3>Approved</h3>
-            <p className="stat-value">{stats.approvedRequests}</p>
+            <p className="stat-label">Approved</p>
+            <h3 className="stat-value">{stats.approvedRequests.toLocaleString()}</h3>
+            <div className="stat-trend positive">
+              <span>↑ 8% from previous period</span>
+            </div>
           </div>
         </div>
         
-        <div className="stat-card">
-          <div className="stat-icon rejected">
-            <FaUserTimes />
+        <div className="stat-card elevation-1 rejected-card">
+          <div className="stat-icon-wrapper rejected">
+            <FaUserTimes className="stat-icon-inner" />
           </div>
           <div className="stat-details">
-            <h3>Rejected</h3>
-            <p className="stat-value">{stats.rejectedRequests}</p>
+            <p className="stat-label">Rejected</p>
+            <h3 className="stat-value">{stats.rejectedRequests.toLocaleString()}</h3>
+            <div className="stat-trend negative">
+              <span>↓ 5% from previous period</span>
+            </div>
           </div>
         </div>
         
-        <div className="stat-card">
-          <div className="stat-icon pending">
-            <FaHourglass />
+        <div className="stat-card elevation-1 pending-card">
+          <div className="stat-icon-wrapper pending">
+            <FaHourglass className="stat-icon-inner" />
           </div>
           <div className="stat-details">
-            <h3>Pending</h3>
-            <p className="stat-value">{stats.pendingRequests}</p>
+            <p className="stat-label">Pending</p>
+            <h3 className="stat-value">{stats.pendingRequests.toLocaleString()}</h3>
+            <div className="stat-trend neutral">
+              <span>= No change from previous period</span>
+            </div>
           </div>
         </div>
       </div>
       
-      {/* Charts Section */}
-      <div className="charts-section">
-        <div className="row">
-          <div className="col">
-            <div className="card chart-card">
-              <h2>Verification Status</h2>
-              <div className="chart-container">
-                <Doughnut data={statusChartData} options={chartOptions} />
-              </div>
+      {/* Main Dashboard Content */}
+      <div className="dashboard-grid">
+        {/* Main Charts Section */}
+        <div className="chart-section main-chart elevation-1">
+          <div className="section-header">
+            <h2>Verification Trends</h2>
+            <div className="section-actions">
+              <select className="time-selector">
+                <option>Last 7 days</option>
+                <option>Last 30 days</option>
+                <option>Last 90 days</option>
+              </select>
             </div>
           </div>
-          
-          <div className="col">
-            <div className="card chart-card">
-              <h2>Verification Types</h2>
-              <div className="chart-container">
-                <Doughnut data={typesChartData} options={chartOptions} />
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div className="card chart-card">
-          <h2>Verification Trends</h2>
           <div className="chart-container trend-chart">
-            <Bar data={trendsChartData} options={chartOptions} />
+            <Bar data={trendsChartData} options={{
+              ...chartOptions,
+              plugins: {
+                legend: {
+                  display: true,
+                  position: 'top',
+                },
+                tooltip: {
+                  enabled: true,
+                  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                  padding: 12,
+                  cornerRadius: 8,
+                  titleFont: { weight: 'bold' },
+                }
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  grid: {
+                    color: 'rgba(0, 0, 0, 0.05)',
+                  }
+                },
+                x: {
+                  grid: {
+                    display: false
+                  }
+                }
+              }
+            }} />
           </div>
         </div>
         
-        {/* Additional KYC Analytics */}
-        <div className="row">
-          <div className="col">
-            <div className="card chart-card">
-              <h2>Age Distribution</h2>
-              <div className="chart-container">
-                <Pie 
-                  data={{
-                    labels: Object.keys(stats.ageDistribution),
-                    datasets: [{
-                      data: Object.values(stats.ageDistribution),
-                      backgroundColor: ['#3498db', '#2ecc71', '#f1c40f', '#e74c3c'],
-                      borderWidth: 0
-                    }]
-                  }} 
-                  options={chartOptions} 
-                />
-              </div>
-            </div>
+        {/* Status Breakdown */}
+        <div className="chart-section status-chart elevation-1">
+          <div className="section-header">
+            <h2>Verification Status</h2>
           </div>
-          
-          <div className="col">
-            <div className="card chart-card">
-              <h2>Gender Distribution</h2>
-              <div className="chart-container">
-                <Pie 
-                  data={{
-                    labels: ['Male', 'Female', 'Other'],
-                    datasets: [{
-                      data: [
-                        stats.genderDistribution.male,
-                        stats.genderDistribution.female,
-                        stats.genderDistribution.other
-                      ],
-                      backgroundColor: ['#3498db', '#e84393', '#95a5a6'],
-                      borderWidth: 0
-                    }]
-                  }} 
-                  options={chartOptions} 
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div className="row">
-          <div className="col">
-            <div className="card chart-card">
-              <h2>Verification Failure Reasons</h2>
-              <div className="chart-container">
-                <Doughnut 
-                  data={{
-                    labels: Object.keys(stats.failureReasons),
-                    datasets: [{
-                      data: Object.values(stats.failureReasons),
-                      backgroundColor: ['#e74c3c', '#f39c12', '#9b59b6', '#3498db', '#95a5a6'],
-                      borderWidth: 0
-                    }]
-                  }} 
-                  options={chartOptions} 
-                />
-              </div>
-            </div>
-          </div>
-          
-          <div className="col">
-            <div className="card chart-card">
-              <h2>District Distribution</h2>
-              <div className="chart-container">
-                <Bar 
-                  data={{
-                    labels: Object.keys(stats.districtData).slice(0, 5),
-                    datasets: [{
-                      label: 'Verifications by District',
-                      data: Object.values(stats.districtData).slice(0, 5),
-                      backgroundColor: '#2980b9',
-                    }]
-                  }} 
-                  options={{
-                    ...chartOptions,
-                    indexAxis: 'y',
-                  }} 
-                />
-              </div>
+          <div className="chart-container donut-chart">
+            <Doughnut 
+              data={statusChartData} 
+              options={{
+                ...chartOptions,
+                cutout: '70%',
+                plugins: {
+                  legend: {
+                    position: 'bottom',
+                    labels: {
+                      padding: 20,
+                      usePointStyle: true,
+                      pointStyle: 'circle'
+                    }
+                  }
+                }
+              }} 
+            />
+            <div className="chart-center-text">
+              <div className="total-count">{stats.totalRequests}</div>
+              <div className="total-label">Total</div>
             </div>
           </div>
         </div>
         
-        {/* Efficiency Metrics */}
-        <div className="row small-stats">
-          <div className="col">
-            <div className="card stat-detail-card">
-              <div className="stat-icon clock">
+        {/* Verification Types */}
+        <div className="chart-section types-chart elevation-1">
+          <div className="section-header">
+            <h2>Verification Types</h2>
+          </div>
+          <div className="chart-container">
+            <Doughnut 
+              data={typesChartData} 
+              options={{
+                ...chartOptions,
+                cutout: '60%',
+                plugins: {
+                  legend: {
+                    position: 'right',
+                    labels: {
+                      padding: 15,
+                      usePointStyle: true,
+                      pointStyle: 'circle'
+                    }
+                  }
+                }
+              }} 
+            />
+          </div>
+        </div>
+        
+        {/* Demographics Section */}
+        <div className="chart-section demographics elevation-1">
+          <div className="section-header">
+            <h2>Demographics</h2>
+            <div className="section-tabs">
+              <button className="section-tab active">Age</button>
+              <button className="section-tab">Gender</button>
+              <button className="section-tab">Region</button>
+            </div>
+          </div>
+          <div className="demographic-charts">
+            <div className="chart-container">
+              <Pie 
+                data={{
+                  labels: Object.keys(stats.ageDistribution),
+                  datasets: [{
+                    data: Object.values(stats.ageDistribution),
+                    backgroundColor: ['#3498db', '#2ecc71', '#f1c40f', '#e74c3c'],
+                    borderWidth: 0,
+                    borderRadius: 4
+                  }]
+                }} 
+                options={{
+                  ...chartOptions,
+                  plugins: {
+                    legend: {
+                      position: 'right',
+                      labels: {
+                        usePointStyle: true,
+                        pointStyle: 'circle',
+                        padding: 15
+                      }
+                    }
+                  }
+                }} 
+              />
+            </div>
+          </div>
+        </div>
+        
+        {/* Failure Reasons */}
+        <div className="chart-section failure-chart elevation-1">
+          <div className="section-header">
+            <h2>Verification Failure Reasons</h2>
+          </div>
+          <div className="chart-container">
+            <Bar 
+              data={{
+                labels: Object.keys(stats.failureReasons),
+                datasets: [{
+                  data: Object.values(stats.failureReasons),
+                  backgroundColor: [
+                    'rgba(231, 76, 60, 0.8)',
+                    'rgba(243, 156, 18, 0.8)',
+                    'rgba(155, 89, 182, 0.8)',
+                    'rgba(52, 152, 219, 0.8)',
+                    'rgba(149, 165, 166, 0.8)'
+                  ],
+                  borderRadius: 6,
+                  maxBarThickness: 40
+                }]
+              }} 
+              options={{
+                ...chartOptions,
+                indexAxis: 'y',
+                plugins: {
+                  legend: {
+                    display: false
+                  }
+                },
+                scales: {
+                  x: {
+                    grid: {
+                      display: false
+                    }
+                  },
+                  y: {
+                    grid: {
+                      display: false
+                    }
+                  }
+                }
+              }} 
+            />
+          </div>
+        </div>
+        
+        {/* Efficiency Cards */}
+        <div className="metrics-section elevation-1">
+          <div className="section-header">
+            <h2>Performance Metrics</h2>
+          </div>
+          <div className="metrics-grid">
+            <div className="metric-card">
+              <div className="metric-icon clock">
                 <FaClock />
               </div>
-              <div className="stat-detail-content">
-                <h3>Average Verification Time</h3>
-                <p className="stat-value">{stats.avgVerificationTime} minutes</p>
-                <p className="stat-description">Average time to complete the verification process</p>
+              <div className="metric-info">
+                <p className="metric-value">{stats.avgVerificationTime} min</p>
+                <p className="metric-label">Avg. Verification Time</p>
               </div>
             </div>
-          </div>
-          
-          <div className="col">
-            <div className="card stat-detail-card">
-              <div className="stat-icon success-rate">
+            
+            <div className="metric-card">
+              <div className="metric-icon success-rate">
                 <FaCheck />
               </div>
-              <div className="stat-detail-content">
-                <h3>Verification Success Rate</h3>
-                <p className="stat-value">
+              <div className="metric-info">
+                <p className="metric-value">
                   {stats.totalRequests 
                     ? ((stats.approvedRequests / stats.totalRequests) * 100).toFixed(1) 
                     : 0}%
                 </p>
-                <p className="stat-description">Percentage of approved verifications</p>
+                <p className="metric-label">Success Rate</p>
+              </div>
+            </div>
+            
+            <div className="metric-card">
+              <div className="metric-icon warning">
+                <FaExclamationTriangle />
+              </div>
+              <div className="metric-info">
+                <p className="metric-value">
+                  {stats.totalRequests 
+                    ? ((stats.rejectedRequests / stats.totalRequests) * 100).toFixed(1) 
+                    : 0}%
+                </p>
+                <p className="metric-label">Rejection Rate</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      {/* Recent Requests */}
-      <div className="card">
-        <div className="card-header">
-          <h2>Recent Requests</h2>
-          <Link to="/kyc" className="view-all-link">View All</Link>
-        </div>
         
-        <div className="table-responsive">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>User</th>
-                <th>Type</th>
-                <th>Submission Date</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentRequests.map(request => (
-                <tr key={request.id}>
-                  <td>{request.id.substring(0, 8)}</td>
-                  <td>{request.userName || 'N/A'}</td>
-                  <td>{request.verificationType}</td>
-                  <td>{new Date(request.createdAt).toLocaleDateString()}</td>
-                  <td>{getStatusBadge(request.status)}</td>
-                  <td>
-                    <Link to={`/kyc/${request.id}`} className="btn btn-primary btn-sm">
-                      Review
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-              
-              {recentRequests.length === 0 && (
+        {/* Recent Requests */}
+        <div className="recent-requests-section elevation-1">
+          <div className="section-header">
+            <h2>Recent Verification Requests</h2>
+            <Link to="/kyc" className="view-all-button">
+              View All Requests <span>→</span>
+            </Link>
+          </div>
+          
+          <div className="table-container">
+            <table className="modern-table">
+              <thead>
                 <tr>
-                  <td colSpan="6" className="no-data">No recent requests found</td>
+                  <th>ID</th>
+                  <th>User</th>
+                  <th>Type</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Action</th>
                 </tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {recentRequests.map(request => (
+                  <tr key={request.id}>
+                    <td className="id-cell">{request.id.substring(0, 8)}</td>
+                    <td className="user-cell">
+                      <div className="user-info">
+                        <div className="user-avatar">
+                          {request.userName?.charAt(0) || 'U'}
+                        </div>
+                        <span>{request.userName || 'N/A'}</span>
+                      </div>
+                    </td>
+                    <td>{request.verificationType}</td>
+                    <td>{new Date(request.createdAt).toLocaleDateString('en-US', { 
+                      month: 'short', 
+                      day: 'numeric'
+                    })}</td>
+                    <td>{getStatusBadge(request.status)}</td>
+                    <td>
+                      <Link to={`/kyc/${request.id}`} className="action-button">
+                        Review
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+                
+                {recentRequests.length === 0 && (
+                  <tr>
+                    <td colSpan="6" className="empty-state">
+                      <div className="empty-state-content">
+                        <FaIdCard className="empty-icon" />
+                        <p>No recent verification requests found</p>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
