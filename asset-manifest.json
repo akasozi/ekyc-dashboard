@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ekyc-dashboard/static/css/main.b6a3d344.css",
+    "main.js": "/ekyc-dashboard/static/js/main.94057686.js",
+    "index.html": "/ekyc-dashboard/index.html",
+    "main.b6a3d344.css.map": "/ekyc-dashboard/static/css/main.b6a3d344.css.map",
+    "main.94057686.js.map": "/ekyc-dashboard/static/js/main.94057686.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b6a3d344.css",
+    "static/js/main.94057686.js"
+  ]
+}
