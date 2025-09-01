@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { authService } from '../../services/api';
-import { FaHome, FaIdCard, FaChartBar, FaSignOutAlt, FaUser, FaBars, FaTimes, FaCreditCard, FaUserEdit } from 'react-icons/fa';
+import { FaHome, FaIdCard, FaChartBar, FaSignOutAlt, FaUser, FaBars, FaTimes, FaCreditCard, FaUserEdit, FaBuilding, FaUsers, FaCloudUploadAlt, FaFileAlt } from 'react-icons/fa';
 import '../../styles/Layout.css';
 
 const MainLayout = ({ onLogout }) => {
@@ -115,7 +115,7 @@ const MainLayout = ({ onLogout }) => {
       {/* Sidebar */}
       <div className={`sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
         <div className="sidebar-header">
-          <h2>eKYC Admin</h2>
+          <h2>Admin</h2>
           <button className="sidebar-toggle" onClick={toggleSidebar}>
             {sidebarOpen ? <FaTimes /> : <FaBars />}
           </button>
@@ -150,18 +150,33 @@ const MainLayout = ({ onLogout }) => {
               </NavLink>
             </li>
             <li>
+              <NavLink to="/ministries" className={({ isActive }) => isActive ? 'active' : ''}>
+                <FaBuilding /> <span>Ministry Management</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/staff" className={({ isActive }) => isActive ? 'active' : ''}>
+                <FaUsers /> <span>Staff Management</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/upload" className={({ isActive }) => isActive ? 'active' : ''}>
+                <FaCloudUploadAlt /> <span>Bulk Upload</span>
+              </NavLink>
+            </li>
+            <li>
               <NavLink to="/kyc" className={({ isActive }) => isActive ? 'active' : ''}>
-                <FaIdCard /> <span>KYC Requests</span>
+                <FaIdCard /> <span>eKYC Verification</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/reports" className={({ isActive }) => isActive ? 'active' : ''}>
+                <FaFileAlt /> <span>Reports</span>
               </NavLink>
             </li>
             <li>
               <NavLink to="/analytics" className={({ isActive }) => isActive ? 'active' : ''}>
                 <FaChartBar /> <span>Analytics</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/billing" className={({ isActive }) => isActive ? 'active' : ''}>
-                <FaCreditCard /> <span>Billing & Credits</span>
               </NavLink>
             </li>
           </ul>

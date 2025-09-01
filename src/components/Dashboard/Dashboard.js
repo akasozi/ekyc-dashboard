@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { analyticsService, kycService } from '../../services/api';
 import { Bar, Doughnut, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from 'chart.js';
-import { FaCheck, FaTimes, FaHourglass, FaIdCard, FaUserCheck, FaUserTimes, FaClock, FaVenusMars, FaMapMarkerAlt, FaExclamationTriangle } from 'react-icons/fa';
+import { FaCheck, FaTimes, FaHourglass, FaIdCard, FaUserCheck, FaUserTimes, FaClock, FaVenusMars, FaMapMarkerAlt, FaExclamationTriangle, FaUsers, FaBuilding, FaChartBar } from 'react-icons/fa';
 import '../../styles/Dashboard.css';
 
 // Register Chart.js components
@@ -131,13 +131,13 @@ const Dashboard = () => {
       <div className="stats-grid">
         <div className="stat-card elevation-1 total-card">
           <div className="stat-icon-wrapper total">
-            <FaIdCard className="stat-icon-inner" />
+            <FaUsers className="stat-icon-inner" />
           </div>
           <div className="stat-details">
-            <p className="stat-label">Total Requests</p>
-            <h3 className="stat-value">{stats.totalRequests.toLocaleString()}</h3>
+            <p className="stat-label">Total Staff</p>
+            <h3 className="stat-value">12,890</h3>
             <div className="stat-trend positive">
-              <span>↑ 12% from previous period</span>
+              <span>↑ 5% from last upload</span>
             </div>
           </div>
         </div>
@@ -147,23 +147,10 @@ const Dashboard = () => {
             <FaUserCheck className="stat-icon-inner" />
           </div>
           <div className="stat-details">
-            <p className="stat-label">Approved</p>
-            <h3 className="stat-value">{stats.approvedRequests.toLocaleString()}</h3>
+            <p className="stat-label">Verified Staff</p>
+            <h3 className="stat-value">8,660</h3>
             <div className="stat-trend positive">
-              <span>↑ 8% from previous period</span>
-            </div>
-          </div>
-        </div>
-        
-        <div className="stat-card elevation-1 rejected-card">
-          <div className="stat-icon-wrapper rejected">
-            <FaUserTimes className="stat-icon-inner" />
-          </div>
-          <div className="stat-details">
-            <p className="stat-label">Rejected</p>
-            <h3 className="stat-value">{stats.rejectedRequests.toLocaleString()}</h3>
-            <div className="stat-trend negative">
-              <span>↓ 5% from previous period</span>
+              <span>↑ 15% this month</span>
             </div>
           </div>
         </div>
@@ -173,10 +160,49 @@ const Dashboard = () => {
             <FaHourglass className="stat-icon-inner" />
           </div>
           <div className="stat-details">
-            <p className="stat-label">Pending</p>
-            <h3 className="stat-value">{stats.pendingRequests.toLocaleString()}</h3>
+            <p className="stat-label">Pending Verification</p>
+            <h3 className="stat-value">2,890</h3>
             <div className="stat-trend neutral">
-              <span>= No change from previous period</span>
+              <span>22% of total staff</span>
+            </div>
+          </div>
+        </div>
+        
+        <div className="stat-card elevation-1 ministry-card">
+          <div className="stat-icon-wrapper ministry">
+            <FaBuilding className="stat-icon-inner" />
+          </div>
+          <div className="stat-details">
+            <p className="stat-label">Active Ministries</p>
+            <h3 className="stat-value">5</h3>
+            <div className="stat-trend positive">
+              <span>All systems operational</span>
+            </div>
+          </div>
+        </div>
+        
+        <div className="stat-card elevation-1 ghost-card">
+          <div className="stat-icon-wrapper ghost">
+            <FaExclamationTriangle className="stat-icon-inner" />
+          </div>
+          <div className="stat-details">
+            <p className="stat-label">Potential Ghost Workers</p>
+            <h3 className="stat-value">145</h3>
+            <div className="stat-trend negative">
+              <span>↓ 8% from last month</span>
+            </div>
+          </div>
+        </div>
+        
+        <div className="stat-card elevation-1 completion-card">
+          <div className="stat-icon-wrapper completion">
+            <FaChartBar className="stat-icon-inner" />
+          </div>
+          <div className="stat-details">
+            <p className="stat-label">Overall Completion</p>
+            <h3 className="stat-value">67.2%</h3>
+            <div className="stat-trend positive">
+              <span>↑ 3% improvement</span>
             </div>
           </div>
         </div>

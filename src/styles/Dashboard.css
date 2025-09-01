@@ -129,6 +129,18 @@
   background: linear-gradient(135deg, #f39c12, #e67e22);
 }
 
+.stat-icon-wrapper.ministry {
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+
+.stat-icon-wrapper.ghost {
+  background: linear-gradient(135deg, #e67e22, #d35400);
+}
+
+.stat-icon-wrapper.completion {
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+}
+
 .stat-icon-inner {
   color: white;
   font-size: 1.5rem;
